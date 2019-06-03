@@ -17,6 +17,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {NbPasswordAuthStrategy, NbAuthModule, NbAuthJWTToken} from '@nebular/auth';
 import {NbRoleProvider, NbSecurityModule} from '@nebular/security';
 import {RoleProvider} from './role.provider';
+import {environment} from '../environments/environment';
 
 @NgModule({
   declarations: [AppComponent],
@@ -47,7 +48,7 @@ import {RoleProvider} from './role.provider';
             class: NbAuthJWTToken,
             key: 'accessToken',
           },
-          baseEndpoint: 'http://localhost:8080',
+          baseEndpoint: environment.serverAddress,
           login: {
             endpoint: '/login',
             method: 'post',
