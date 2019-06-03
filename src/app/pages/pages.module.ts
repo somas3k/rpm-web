@@ -8,6 +8,7 @@ import {ProfileComponent} from './profile/profile.component';
 import {ChartjsComponent} from './chartjs/chartjs.component';
 import {ChartjsLineComponent} from './chartjs/chartjs-line.component';
 import {ChartComponent} from 'angular2-chartjs';
+import {Ng2SmartTableModule} from 'ng2-smart-table';
 
 const PAGES_COMPONENTS = [
   PagesComponent,
@@ -18,6 +19,7 @@ const PAGES_COMPONENTS = [
     PagesRoutingModule,
     ThemeModule,
     MiscellaneousModule,
+    Ng2SmartTableModule,
   ],
   declarations: [
     ...PAGES_COMPONENTS,
