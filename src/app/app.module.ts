@@ -14,9 +14,8 @@ import {AppComponent} from './app.component';
 import {AppRoutingModule} from './app-routing.module';
 import {ThemeModule} from './@theme/theme.module';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import {NbPasswordAuthStrategy, NbAuthModule, NbAuthJWTToken} from '@nebular/auth';
-import {NbRoleProvider, NbSecurityModule} from '@nebular/security';
-import {RoleProvider} from './role.provider';
+import {NbAuthJWTToken, NbAuthModule, NbPasswordAuthStrategy} from '@nebular/auth';
+import {NbSecurityModule} from '@nebular/security';
 import {environment} from '../environments/environment';
 
 @NgModule({
