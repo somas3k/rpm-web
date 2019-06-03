@@ -10,5 +10,5 @@
 
 export const environment = {
   production: false,
-  serverAddress: 'http://localhost:8080',
+  serverAddress: 'https://rpm-server.herokuapp.com',
 };

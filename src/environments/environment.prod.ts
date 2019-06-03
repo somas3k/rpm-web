@@ -5,5 +5,5 @@
  */
 export const environment = {
   production: true,
-  serverAddress: 'https://pulse24.herokuapp.com',
+  serverAddress: 'http://localhost:8080',
 };
