@@ -82,9 +82,7 @@
     "tslib": "^1.9.0",
     "typeface-exo": "0.0.22",
     "web-animations-js": "2.2.5",
-    "zone.js": "^0.8.29"
-  },
-  "devDependencies": {
+    "zone.js": "^0.8.29",
     "@angular/compiler-cli": "^7.2.11",
     "@angular/language-service": "7.2.11",
     "@compodoc/compodoc": "1.0.1",
