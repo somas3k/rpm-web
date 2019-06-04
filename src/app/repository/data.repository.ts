@@ -9,6 +9,11 @@ export class Device {
   deviceName: string;
 }
 
+export class HeartRateRecord {
+  timestamp: string;
+  heartRate: number;
+}
+
 @Injectable({providedIn: 'root'})
 export class DataRepository {
   private token: any;
@@ -26,5 +31,9 @@ export class DataRepository {
 
   private getHttpHeaders(): HttpHeaders {
     return new HttpHeaders().set('Authorization', `Bearer ${this.token}`);
+  }
+
+  getHeartRateRecords(deviceId: string, dateFrom: string, dateTo: string): Observable<HeartRateRecord[]> {
+    return this.httpClient.get<HeartRateRecord[]>(environment.serverAddress + '/heartrate/' + deviceId + '?dateFrom=' + dateFrom + '&dateTo=' + dateTo);
   }
 }

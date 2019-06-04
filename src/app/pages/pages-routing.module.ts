@@ -2,8 +2,8 @@ import {RouterModule, Routes} from '@angular/router';
 import {NgModule} from '@angular/core';
 
 import {PagesComponent} from './pages.component';
-import {ChartjsComponent} from './chartjs/chartjs.component';
 import {ProfileComponent} from './profile/profile.component';
+import {EchartsComponent} from './echarts/echarts.component';
 
 const routes: Routes = [
   {
@@ -16,7 +16,7 @@ const routes: Routes = [
       },
       {
         path: 'charts',
-        component: ChartjsComponent,
+        component: EchartsComponent,
       },
     ],
   },
