@@ -1,4 +1,4 @@
-import {InjectionToken, NgModule} from '@angular/core';
+import {NgModule} from '@angular/core';
 
 import {PagesComponent} from './pages.component';
 import {PagesRoutingModule} from './pages-routing.module';
@@ -17,7 +17,7 @@ import {MomentModule} from 'ngx-moment';
 import {EchartsAreaStackComponent} from './echarts/echarts-area-stack.component';
 import {EchartsBarAnimationComponent} from './echarts/echarts-bar-animation.component';
 import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
-import {NbDatepickerAdapter, NbDatepickerDirective, NbDatepickerModule} from '@nebular/theme';
+import {NbDatepickerModule} from '@nebular/theme';
 
 const PAGES_COMPONENTS = [
   PagesComponent,

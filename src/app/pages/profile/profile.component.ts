@@ -16,6 +16,16 @@ export class ProfileComponent implements OnInit {
         title: 'Device name',
       },
     },
+    actions: {
+      edit: false,
+    },
+    add: {
+      confirmCreate: true,
+    },
+    delete: {
+      confirmDelete: true,
+    },
+    mode: 'inline',
   };
 
   constructor(private dataRepository: DataRepository) {
@@ -25,4 +35,15 @@ export class ProfileComponent implements OnInit {
     this.dataRepository.getDevices().subscribe(value => this.devices = value);
   }
 
+  onNew(event: any) {
+    this.dataRepository
+      .saveDevice(event.newData.id, event.newData.deviceName)
+      .subscribe(value => event.confirm.resolve(value), () => event.confirm.reject());
+  }
+
+  onDelete(event: any) {
+    this.dataRepository
+      .deleteDevice(event.data.id)
+      .subscribe(() => event.confirm.resolve(), () => event.confirm.reject());
+  }
 }

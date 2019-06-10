@@ -29,12 +29,22 @@ export class DataRepository {
     return this.httpClient.get<Device[]>(environment.serverAddress + '/device', {headers: this.getHttpHeaders()});
   }
 
+  saveDevice(deviceId: string, deviceName: string) {
+    return this.httpClient
+      .post(environment.serverAddress + '/device/' + deviceId + '?deviceName=' + deviceName, {}, {headers: this.getHttpHeaders()});
+  }
+
+  deleteDevice(deviceId: string) {
+    return this.httpClient.delete(environment.serverAddress + '/device/' + deviceId, {headers: this.getHttpHeaders()});
+  }
+
   private getHttpHeaders(): HttpHeaders {
     return new HttpHeaders().set('Authorization', `Bearer ${this.token}`);
   }
 
   getHeartRateRecords(deviceId: string, dateFrom: string, dateTo: string): Observable<HeartRateRecord[]> {
-    return this.httpClient.get<HeartRateRecord[]>(environment.serverAddress + '/heartrate/' + deviceId + '?dateFrom=' + dateFrom + '&dateTo=' + dateTo,
+    return this.httpClient
+      .get<HeartRateRecord[]>(environment.serverAddress + '/heartrate/' + deviceId + '?dateFrom=' + dateFrom + '&dateTo=' + dateTo,
       {headers: this.getHttpHeaders()});
   }
 }
