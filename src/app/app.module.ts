@@ -17,6 +17,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {NbAuthJWTToken, NbAuthModule, NbPasswordAuthStrategy} from '@nebular/auth';
 import {NbSecurityModule} from '@nebular/security';
 import {environment} from '../environments/environment';
+import {NbDatepickerModule} from '@nebular/theme';
 
 @NgModule({
   declarations: [AppComponent],
@@ -25,7 +26,7 @@ import {environment} from '../environments/environment';
     BrowserAnimationsModule,
     HttpClientModule,
     AppRoutingModule,
-
+    NbDatepickerModule.forRoot(),
     NgbModule.forRoot(),
     NbSecurityModule.forRoot({
       accessControl: {

@@ -1,4 +1,6 @@
 @import '../../@theme/styles/themes';
+@import '~@nebular/theme/styles/global/breakpoints';
+@import '~bootstrap/scss/mixins/breakpoints';
 
 @include nb-install-component() {
   ngx-echarts-pie,
@@ -17,4 +19,13 @@
     height: 100%;
     width: 100%;
   }
+}
+
+
+ngx-timepicker-field {
+  background: nb-theme(color-fg);
+}
+
+div > input {
+  margin: 2px;
 }

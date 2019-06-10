@@ -4,3 +4,32 @@
     <ngx-echarts-multiple-xaxis></ngx-echarts-multiple-xaxis>
   </nb-card-body>
 </nb-card>
+<nb-card>
+  <nb-card-header>Chart options</nb-card-header>
+  <nb-card-body>
+    <nb-checkbox [(ngModel)]="cs.realTime">Realtime</nb-checkbox>
+    <div *ngIf="cs.realTime"><input [(ngModel)]="cs.minutesToShow" nbInput> - show last minutes</div>
+
+    <div *ngIf="!cs.realTime">
+      From:
+      <input placeholder="(click to enter date)" [nbDatepicker]="datepicker" [(ngModel)]="cs.dateInputFrom" nbInput>
+      <nb-datepicker #datepicker></nb-datepicker>
+
+      <input placeholder="(click to enter date)" [ngxTimepicker]="time" [format]="24" [(ngModel)]="cs.timeInputFrom" nbInput>
+      <ngx-material-timepicker [ngxMaterialTimepickerTheme]="timepicker" #time></ngx-material-timepicker>
+    </div>
+
+    <div *ngIf="!cs.realTime">
+      To:
+      <input placeholder="(click to enter date)" [nbDatepicker]="datepicker" [(ngModel)]="cs.dateInputTo" nbInput>
+      <nb-datepicker #datepicker></nb-datepicker>
+
+      <input placeholder="(click to enter date)" [ngxTimepicker]="time" [format]="24" [(ngModel)]="cs.timeInputTo" nbInput>
+      <ngx-material-timepicker [ngxMaterialTimepickerTheme]="timepicker" #time></ngx-material-timepicker>
+
+    </div>
+    <div *ngIf="!cs.realTime">
+      <button class="btn-demo" nbButton hero (click)="cs.updateChart()">Apply</button>
+    </div>
+  </nb-card-body>
+</nb-card>

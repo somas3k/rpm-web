@@ -34,6 +34,7 @@ export class DataRepository {
   }
 
   getHeartRateRecords(deviceId: string, dateFrom: string, dateTo: string): Observable<HeartRateRecord[]> {
-    return this.httpClient.get<HeartRateRecord[]>(environment.serverAddress + '/heartrate/' + deviceId + '?dateFrom=' + dateFrom + '&dateTo=' + dateTo);
+    return this.httpClient.get<HeartRateRecord[]>(environment.serverAddress + '/heartrate/' + deviceId + '?dateFrom=' + dateFrom + '&dateTo=' + dateTo,
+      {headers: this.getHttpHeaders()});
   }
 }
