@@ -23,7 +23,9 @@ export class ChartService {
   secondInputTo: number;
 
   minutesToShow: number = 1;
+  deviceId: string;
   updateChart: () => void;
+  refresh: () => void;
 
   constructor() { }
 }

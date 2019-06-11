@@ -47,4 +47,12 @@ export class DataRepository {
       .get<HeartRateRecord[]>(environment.serverAddress + '/heartrate/' + deviceId + '?dateFrom=' + dateFrom + '&dateTo=' + dateTo,
       {headers: this.getHttpHeaders()});
   }
+
+  getLimit() {
+    return this.httpClient.get<number>(environment.serverAddress + '/user/limit', {headers: this.getHttpHeaders()});
+  }
+
+  setLimit(limit: number) {
+    return this.httpClient.post(environment.serverAddress + '/user/limit', {limit: limit}, {headers: this.getHttpHeaders()});
+  }
 }

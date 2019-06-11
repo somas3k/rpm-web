@@ -2,7 +2,7 @@ import {Component, AfterViewInit, OnDestroy, OnInit} from '@angular/core';
 import {NbThemeService} from '@nebular/theme';
 import {DataRepository, HeartRateRecord} from '../../repository/data.repository';
 import * as moment from 'moment';
-import {ChartService} from "./chart.service";
+import {ChartService} from './chart.service';
 
 @Component({
   selector: 'ngx-echarts-multiple-xaxis',
@@ -11,19 +11,20 @@ import {ChartService} from "./chart.service";
   `,
 })
 export class EchartsMultipleXaxisComponent implements AfterViewInit, OnDestroy, OnInit {
-
   options: any = {};
   newData: any = {};
   themeSubscription: any;
   lastDateFrom: string;
   minutesToShow: number = this.cs.minutesToShow;
   chartFilled: boolean = true;
+  reload: boolean = false;
 
   private dates: string[] = [];
   private heartRates: number[] = [];
 
   constructor(private theme: NbThemeService, private dataRepo: DataRepository, private cs: ChartService) {
     this.cs.updateChart = () => this.updateChart();
+    this.cs.refresh = () => this.refresh();
   }
 
   ngOnInit(): void {
@@ -40,18 +41,20 @@ export class EchartsMultipleXaxisComponent implements AfterViewInit, OnDestroy, 
         console.log(`lastDateFrom: ${this.lastDateFrom}`);
         console.log(`dateTo: ${dateTo}`);
 
-        if (this.minutesToShow !== this.cs.minutesToShow) {
+        if (this.minutesToShow !== this.cs.minutesToShow || this.reload) {
           this.minutesToShow = this.cs.minutesToShow;
           this.lastDateFrom = moment().subtract(this.minutesToShow, 'm').toISOString(true);
           this.lastDateFrom = this.lastDateFrom.substr(0, this.lastDateFrom.indexOf('.'));
           this.dates = [];
           this.heartRates = [];
+          this.reload = false;
+
           // this.dataRepo.getHeartRateRecords('rx2sVx2+RyqDEWV2vxZ2V1R6SUQ=', this.lastDateFrom, dateTo)
           //   .subscribe(value => this.newChart(value));
           // } else {
         }
         this.chartFilled = false;
-        this.dataRepo.getHeartRateRecords('rx2sVx2+RyqDEWV2vxZ2V1R6SUQ=', this.lastDateFrom, dateTo)
+        this.dataRepo.getHeartRateRecords(this.cs.deviceId, this.lastDateFrom, dateTo)
           .subscribe(value => this.fillChart(value));
       }
     }, 1000);
@@ -93,7 +96,7 @@ export class EchartsMultipleXaxisComponent implements AfterViewInit, OnDestroy, 
     console.log(`dateParsedTo: ${dateToStr}`);
 
 
-    this.dataRepo.getHeartRateRecords('rx2sVx2+RyqDEWV2vxZ2V1R6SUQ=', dateFromStr, dateToStr)
+    this.dataRepo.getHeartRateRecords(this.cs.deviceId, dateFromStr, dateToStr)
       .subscribe(value => {
         this.dates = [];
         this.heartRates = [];
@@ -129,6 +132,18 @@ export class EchartsMultipleXaxisComponent implements AfterViewInit, OnDestroy, 
       ],
     };
     this.chartFilled = true;
+  }
+
+  refresh(): void {
+    if (!this.cs.realTime) {
+      this.updateChart();
+    } else {
+      this.reload = true;
+      // this.lastDateFrom = moment().subtract(this.minutesToShow, 'm').toISOString(true);
+      // this.lastDateFrom = this.lastDateFrom.substr(0, this.lastDateFrom.indexOf('.'));
+      // this.dates = [];
+      // this.heartRates = [];
+    }
   }
 
   ngAfterViewInit() {

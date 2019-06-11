@@ -18,6 +18,7 @@ import {EchartsAreaStackComponent} from './echarts/echarts-area-stack.component'
 import {EchartsBarAnimationComponent} from './echarts/echarts-bar-animation.component';
 import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
 import {NbDatepickerModule} from '@nebular/theme';
+import {NgbDropdownModule} from "@ng-bootstrap/ng-bootstrap";
 
 const PAGES_COMPONENTS = [
   PagesComponent,
@@ -33,6 +34,7 @@ const PAGES_COMPONENTS = [
     MomentModule,
     NgxMaterialTimepickerModule,
     NbDatepickerModule,
+    NgbDropdownModule,
   ],
   declarations: [
     ...PAGES_COMPONENTS,

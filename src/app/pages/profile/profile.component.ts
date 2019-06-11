@@ -27,12 +27,14 @@ export class ProfileComponent implements OnInit {
     },
     mode: 'inline',
   };
+  limit: number;
 
   constructor(private dataRepository: DataRepository) {
   }
 
   ngOnInit() {
     this.dataRepository.getDevices().subscribe(value => this.devices = value);
+    this.dataRepository.getLimit().subscribe(value => this.limit = value);
   }
 
   onNew(event: any) {
@@ -45,5 +47,9 @@ export class ProfileComponent implements OnInit {
     this.dataRepository
       .deleteDevice(event.data.id)
       .subscribe(() => event.confirm.resolve(), () => event.confirm.reject());
+  }
+
+  setLimit() {
+    this.dataRepository.setLimit(this.limit).subscribe(() => {});
   }
 }

@@ -6,4 +6,13 @@
       <ng2-smart-table [settings]='settings' [source]='devices' (createConfirm)='onNew($event)' (deleteConfirm)='onDelete($event)'></ng2-smart-table>
     </nb-card-body>
   </nb-card>
+  <nb-card>
+    <nb-card-header>
+      Limit
+    </nb-card-header>
+    <nb-card-body>
+      <input [(ngModel)]='limit' nbInput>
+      <button class="btn-demo" nbButton hero (click)='setLimit()'>Set limit</button>
+    </nb-card-body>
+  </nb-card>
 </div>

@@ -1,5 +1,15 @@
 <nb-card>
-  <nb-card-header>Multiple x-axis</nb-card-header>
+  <nb-card-header>
+    <div class="dropdown ghost-dropdown" ngbDropdown>
+      <button type="button" class="btn btn-sm" ngbDropdownToggle
+              [ngClass]="{ 'btn-success': currentTheme == 'default', 'btn-primary': currentTheme != 'default'}">
+        {{ cs.deviceId }}
+      </button>
+      <ul ngbDropdownMenu class="dropdown-menu">
+        <li class="dropdown-item" *ngFor="let d of devices" (click)="onClick(d)">{{ d }}</li>
+      </ul>
+    </div>
+  </nb-card-header>
   <nb-card-body>
     <ngx-echarts-multiple-xaxis></ngx-echarts-multiple-xaxis>
   </nb-card-body>
